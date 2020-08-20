@@ -56,6 +56,10 @@ export default {
   css: [
     '~/assets/css/style.css'
   ],
+
+  router: {
+    middleware: ["clearValidationErrors"] 
+  },
   /*
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins

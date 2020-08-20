@@ -40,6 +40,7 @@
 <script>
 import Swal from 'sweetalert2'
 export default {
+    middleware: ['guest'],
     data() {
         return {
             form: {
@@ -54,7 +55,10 @@ export default {
                 await this.$auth.loginWith("local", {
                     data: this.form
                 })
-                this.$router.push('/')
+                // this.$router.push('/')
+                this.$router.push({
+                    path: this.$route.query.redirect || "/profile"
+                })
             } catch (errors) {
                 Swal.fire({
                     type: 'error',
