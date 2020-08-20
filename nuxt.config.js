@@ -62,7 +62,8 @@ export default {
   */
   plugins: [
     './plugins/mixins/user.js',
-    './plugins/axios.js'
+    './plugins/axios.js',
+    './plugins/mixins/validation.js',
   ],
   /*
   ** Auto import components
@@ -87,7 +88,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
-    baseURL: "http://backend.local/api"
+    baseURL: "http://backend2.local/api"
   },
 
   auth: {
