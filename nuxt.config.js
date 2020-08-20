@@ -47,7 +47,7 @@ export default {
         src:
           "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js",
         type: "text/javascript"
-      }
+      },
     ]
   },
   /*
@@ -81,7 +81,8 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    'nuxt-sweetalert2',
   ],
   /*
   ** Axios module configuration

@@ -25,9 +25,9 @@
                         </div>
                         <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign up</button>
                         <hr class="my-4">
-                        <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
-                        <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
-                        <hr class="my-4">
+                        <!-- <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button> -->
+                        <!-- <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button> -->
+                        <!-- <hr class="my-4"> -->
                         <div class="d-flex justify-content-center links">
                             Already have an account?
                             <nuxt-link class="pl-1" to="/login">Log In</nuxt-link>
@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 export default {
     data() {
         return {
@@ -54,14 +55,22 @@ export default {
     },
     methods: {
         async signup() {
-            await this.$axios.$post('register', this.form)
-            await this.$auth.loginWith('local', {
-                data: {
-                    email: this.form.email,
-                    password: this.form.password
-                }
-            })
-            this.$router.push('/')
+            try{
+                await this.$axios.$post('register', this.form)
+                await this.$auth.loginWith('local', {
+                    data: {
+                        email: this.form.email,
+                        password: this.form.password
+                    }
+                })
+                this.$router.push('/')
+            } catch (errors) {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: errors.response.data.errors.email[0],
+                })
+            }
         }
     }
 }

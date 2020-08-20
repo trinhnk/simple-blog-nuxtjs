@@ -23,9 +23,9 @@
                             </div>
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Log in</button>
                             <hr class="my-4">
-                            <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
-                            <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button>
-                            <hr class="my-4">
+                            <!-- <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button> -->
+                            <!-- <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button> -->
+                            <!-- <hr class="my-4"> -->
                             <div class="d-flex justify-content-center links">Don't have an account?<nuxt-link class="pl-1" to="/signup">Sign Up</nuxt-link>
                             </div>
                         </form>
@@ -38,6 +38,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 export default {
     data() {
         return {
@@ -49,10 +50,18 @@ export default {
     },
     methods: {
         async submit() {
-            await this.$auth.loginWith('local', {
-                data: this.form
-            })
-            this.$router.push('/')
+            try {
+                await this.$auth.loginWith("local", {
+                    data: this.form
+                })
+                this.$router.push('/')
+            } catch (errors) {
+                Swal.fire({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: errors.response.data.errors.email[0],
+                })
+            }
         }
     }
 }
