@@ -13,7 +13,7 @@
                             <nuxt-link class="nav-link" to="/">Home</nuxt-link>
                         </li>
                         <li class="nav-item">
-                            <nuxt-link class="nav-link" to="/posts">Posts</nuxt-link>
+                            <nuxt-link class="nav-link" to="/posts">Blog</nuxt-link>
                         </li>
                     </ul>
                     <template v-if="!authenticated">
@@ -29,7 +29,11 @@
                     <template v-if="authenticated">
                         <ul class="navbar-nav ml-auto">
                             <li class="nav-item">
-                                <a class="nav-link" href="javascript:void(0);">{{ user.name }}</a>
+                                <nuxt-link class="nav-link" to="/dashboard">Dashboard</nuxt-link>
+                            </li>
+                            <li class="nav-item">
+                                <!-- <a class="nav-link" href="javascript:void(0);">{{ user.name }}</a> -->
+                                <nuxt-link class="nav-link" to="/profile">{{ user.name }}</nuxt-link>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="javascript:void(0);" @click.prevent="logout()">Log out</a>

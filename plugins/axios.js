@@ -6,7 +6,7 @@ export default function({ $axios, store, redirect }) {
 		return Promise.reject(error);
 	});
 
-	$axios.onRequest(() => {
-		store.dispatch("validation/clearErrors");
-	});
+	// $axios.onRequest(() => {
+	// 	store.dispatch("validation/clearErrors");
+	// });
 }
