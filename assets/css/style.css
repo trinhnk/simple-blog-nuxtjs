@@ -22,3 +22,4 @@
 .form-label-group>label{display:none}
 .form-label-group input:-ms-input-placeholder{color:#777}
 }
+.body-min-height{min-height:calc(100vh - 61.42px - 55.97px)}

@@ -1,6 +1,8 @@
 <template>
-    <div class="container">
-        <h1>{{ topic.title }}</h1>
+    <div class="container body-min-height">
+        <div class="title pt-5">
+            <h1>{{ topic.title }}</h1>
+        </div>
         <hr>
         <p class="text-muted">{{topic.created_at}} by {{topic.user.name}}</p>
         <div v-for="(content, index) in topic.posts" :key="index" class="ml-5 content">

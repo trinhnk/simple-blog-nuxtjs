@@ -1,12 +1,19 @@
 <template>
-    <div class="container mt-5">
-        <h1>List Topics</h1>
+    <div class="container body-min-height">
+        <div class="title pt-5">
+            <h1>List Topics</h1>
+        </div>
         <div class="list-topics mt-5 mb-5">
             <div v-for="(topic, index) in topics" :key="index" class="bg-light my-4 px-3 py-3">
-                <nuxt-link :to="{name: 'topics-id', params: {id: topic.id}}"><h2>{{ topic.title }}</h2></nuxt-link>
-                <p>{{ topic.created_at }} by {{ topic.user.name }}</p>
+                <nuxt-link :to="{name: 'topics-id', params: {id: topic.id}}">
+                    <h2>{{ topic.title }}</h2>
+                </nuxt-link>
+
+                {{ user }}
+                <p class="text-muted">{{ topic.created_at }} by {{ topic.user.name }}</p>
                 <div v-for="(content, index) in topic.posts" :key="index" class="ml-5 content">
                     {{ content.body }}
+                    <p class="text-muted mt-3">{{ content.created_at }} by {{ topic.user.name }}</p>
                 </div>
             </div>
         </div>
