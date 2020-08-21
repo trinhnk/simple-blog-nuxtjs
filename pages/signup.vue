@@ -1,4 +1,5 @@
 <template>
+<div class="container-fluid signup-content">
     <div class="container">
         <div class="row">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -39,6 +40,7 @@
             </div>
         </div>
     </div>
+</div>
 </template>
 
 <script>
@@ -79,8 +81,3 @@ export default {
     }
 }
 </script>
-
-<style>
-:root{--input-padding-x:1.5rem;--input-padding-y:.75rem}
-body{background:#007bff;background:linear-gradient(to right,#0062E6,#33AEFF)}
-</style>
