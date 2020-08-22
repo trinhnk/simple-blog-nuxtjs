@@ -9,7 +9,19 @@
                     <h2>{{ topic.title }}</h2>
                 </nuxt-link>
 
-                {{ user }}
+                <!-- <div v-if="authenticated">
+                    <div v-if="authenticated">You can edit</div>
+                </div> -->
+                <div v-if="authenticated">
+                    <div v-if="user.id === topic.user.id">
+                    <button @click="deleteTopic(topic.id)" class="btn btn-outline-danger fa fa-trash fa-2x pull-right"></button>
+                    
+                    <nuxt-link :to="{name: 'topics-edit', params: {id: topic.id}}">
+                        <button class="btn btn-outline-success fa fa-edit fa-2x pull-right"></button>
+                    </nuxt-link>
+                    </div>
+                </div>
+
                 <p class="text-muted">{{ topic.created_at }} by {{ topic.user.name }}</p>
                 <div v-for="(content, index) in topic.posts" :key="index" class="ml-5 content">
                     {{ content.body }}
@@ -36,13 +48,12 @@ export default {
     data() {
         return {
             topics: [],
-            links: []
+            links: [],
+            // url: this.$router.path
         }
     },
     async asyncData({$axios}) {
         let {data, links, meta} = await $axios.$get('/topics')
-        console.log(links)
-        console.log(meta)
         return {
             topics: data,
             links
@@ -53,6 +64,12 @@ export default {
             let {data} =  await this.$axios.$get(url)
             return this.topics = {...this.topics, ...data}
         },
+    },
+    head() {
+        return {
+            title: 'Blog',
+            meta: []
+        }
     }
 }
 </script>

@@ -9,29 +9,29 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
+                        <li class="nav-item" :class="[(this.$route.path == '/') ? 'active' : '']">
                             <nuxt-link class="nav-link" to="/">Home</nuxt-link>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" :class="[(this.$route.path == '/topics') ? 'active' : '']">
                             <nuxt-link class="nav-link" to="/topics">Blog</nuxt-link>
                         </li>
                     </ul>
                     <template v-if="!authenticated">
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
+                            <li class="nav-item" :class="[(this.$route.path == '/login') ? 'active' : '']">
                                 <nuxt-link class="nav-link" to="/login">Log in</nuxt-link>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" :class="[(this.$route.path == '/signup') ? 'active' : '']">
                                 <nuxt-link class="nav-link" to="/signup">Sign up</nuxt-link>
                             </li>
                         </ul>
                     </template>
                     <template v-if="authenticated">
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item">
+                            <li class="nav-item" :class="[(this.$route.path == '/dashboard') ? 'active' : '']">
                                 <nuxt-link class="nav-link" to="/dashboard">Dashboard</nuxt-link>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" :class="[(this.$route.path == '/profile') ? 'active' : '']">
                                 <!-- <a class="nav-link" href="javascript:void(0);">{{ user.name }}</a> -->
                                 <nuxt-link class="nav-link" to="/profile">{{ user.name }}</nuxt-link>
                             </li>
@@ -52,6 +52,11 @@
 
 <script>
 export default {
+    data() {
+        return {
+            router: this.$route.path
+        }
+    },
     methods: {
         logout() {
             this.$auth.logout()

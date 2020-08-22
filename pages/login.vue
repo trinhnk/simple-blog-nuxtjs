@@ -42,7 +42,7 @@
 <script>
 import Swal from 'sweetalert2'
 export default {
-    middleware: ['guest'],
+    middleware: 'guest',
     data() {
         return {
             form: {
@@ -58,9 +58,10 @@ export default {
                     data: this.form
                 })
                 // this.$router.push('/')
-                this.$router.push({
-                    path: this.$route.query.redirect || "/dashboard"
-                })
+                console.log(this.$route.path)
+                // this.$router.push({
+                //     path: this.$route.query.redirect || "/dashboard"
+                // })
             } catch (errors) {
                 Swal.fire({
                     type: 'error',
@@ -68,6 +69,12 @@ export default {
                     text: errors.response.data.errors.email[0],
                 })
             }
+        }
+    },
+    head() {
+        return {
+            title: 'Log in',
+            meta: []
         }
     }
 }

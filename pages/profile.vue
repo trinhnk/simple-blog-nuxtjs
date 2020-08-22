@@ -6,7 +6,13 @@
 
 <script>
 export default {
-    middleware: ['auth']
+    middleware: ['auth'],
+    head() {
+        return {
+            title: 'Profile',
+            meta: []
+        }
+    }
 }
 </script>
 

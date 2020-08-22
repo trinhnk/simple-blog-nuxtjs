@@ -51,6 +51,12 @@ export default {
                 // })
             }
         }
+    },
+    head() {
+        return {
+            title: 'Dashboard',
+            meta: []
+        }
     }
 }
 </script>
