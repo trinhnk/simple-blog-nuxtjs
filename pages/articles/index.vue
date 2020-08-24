@@ -1,25 +1,23 @@
 <template>
-    <div class="container col-md-6 mt-5">
-        <div class="my-5">
-            <nuxt-link class="btn btn-secondary mr-5" to="/categories">Categories</nuxt-link>
-            <nuxt-link class="btn btn-secondary" to="/articles">Articles</nuxt-link> 
-        </div>
-        <h2>Create a new topic</h2>
-        <br>
-        <form @submit.prevent="create">
-        <div class="form-group">
-            <label><strong>Topic title:</strong></label>
-            <input v-model="form.title" type="text" class="form-control" placeholder="Enter topic title" autofocus>
-            <small class="form-text text-danger" v-if="errors.title">{{errors.title[0]}}</small>
-        </div>
-        <div class="form-group">
-            <label><strong>Topic body:</strong></label>
-            <textarea v-model="form.body" class="form-control" rows="5"></textarea>
-            <small class="form-text text-danger" v-if="errors.body">{{errors.body[0]}}</small>
-        </div>
-        <button type="submit" class="btn btn-primary">Create</button>
-        </form>
-    </div>
+  <div class="container col-md-6 mt-5">
+    <h2>Create a new topic</h2>
+    <br>
+    <nuxt-link class="btn btn-success" to="/articles/create">Add New</nuxt-link>
+
+    <!-- <form @submit.prevent="create">
+      <div class="form-group">
+        <label><strong>Topic title:</strong></label>
+        <input v-model="form.title" type="text" class="form-control" placeholder="Enter topic title" autofocus>
+        <small class="form-text text-danger" v-if="errors.title">{{errors.title[0]}}</small>
+      </div>
+      <div class="form-group">
+        <label><strong>Topic body:</strong></label>
+        <textarea v-model="form.body" class="form-control" rows="5"></textarea>
+        <small class="form-text text-danger" v-if="errors.body">{{errors.body[0]}}</small>
+      </div>
+      <button type="submit" class="btn btn-primary">Create</button>
+    </form> -->
+  </div>
 </template>
 
 <script>

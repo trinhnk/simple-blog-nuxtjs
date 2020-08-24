@@ -31,6 +31,12 @@
                             <li class="nav-item" :class="[(this.$route.path == '/dashboard') ? 'active' : '']">
                                 <nuxt-link class="nav-link" to="/dashboard">Dashboard</nuxt-link>
                             </li>
+                            <li class="nav-item" :class="[(this.$route.path == '/articles') ? 'active' : '']">
+                                <nuxt-link class="nav-link" to="/articles">Articles</nuxt-link>
+                            </li>
+                            <li class="nav-item" :class="[(this.$route.path == '/categories') ? 'active' : '']">
+                                <nuxt-link class="nav-link" to="/categories">Categories</nuxt-link>
+                            </li>
                             <li class="nav-item" :class="[(this.$route.path == '/profile') ? 'active' : '']">
                                 <!-- <a class="nav-link" href="javascript:void(0);">{{ user.name }}</a> -->
                                 <nuxt-link class="nav-link" to="/profile">{{ user.name }}</nuxt-link>
@@ -40,10 +46,10 @@
                             </li>
                         </ul>
                     </template>
-                    <form class="form-inline my-2 my-lg-0">
+                    <!-- <form class="form-inline my-2 my-lg-0">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
+                    </form> -->
                 </div>
             </div>
         </nav>

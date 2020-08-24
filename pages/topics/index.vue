@@ -16,7 +16,7 @@
                     <div v-if="user.id === topic.user.id">
                     <button @click="deleteTopic(topic.id)" class="btn btn-outline-danger fa fa-trash fa-2x pull-right"></button>
                     
-                    <nuxt-link :to="{name: 'topics-edit', params: {id: topic.id}}">
+                    <nuxt-link :to="{name: 'topics-id-edit', params: {id: topic.id}}">
                         <button class="btn btn-outline-success fa fa-edit fa-2x pull-right"></button>
                     </nuxt-link>
                     </div>

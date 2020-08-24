@@ -1,6 +1,8 @@
 <template>
 	<div class="container">
-		<h2>Update Topic Title</h2>
+		<div class="pt-5">
+			<h1>Update Topic</h1>
+		</div>
 
 		<form @submit.prevent="update">
 			<div class="form-group mt-5">
@@ -21,7 +23,7 @@
 			return {
 				topic: {
 					title: ''
-				}
+				},
 			}
 		},
 		async asyncData({$axios, params}) {
@@ -33,8 +35,9 @@
 				await this.$axios.$patch(`/topics/${this.$route.params.id}`, {
 					title: this.topic.title
 				})
+				// console.log(this.topic.title)
 				// redirect
-				this.$router.push('/topics')
+				// this.$router.push('/topics')
 			}
 		}
 	}
