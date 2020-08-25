@@ -1,8 +1,11 @@
 <template>
-  <div class="container col-md-6 mt-5">
-    <h2>Create a new topic</h2>
-    <br>
-    <nuxt-link class="btn btn-success" to="/articles/create">Add New</nuxt-link>
+    <div class="container body-min-height">
+        <div class="py-5">
+            <h2>Create a new topic</h2>
+            <br>
+            <nuxt-link class="btn btn-success" to="/articles/create">Add New</nuxt-link>
+
+        </div>
 
     <!-- <form @submit.prevent="create">
       <div class="form-group">
@@ -17,7 +20,7 @@
       </div>
       <button type="submit" class="btn btn-primary">Create</button>
     </form> -->
-  </div>
+    </div>
 </template>
 
 <script>

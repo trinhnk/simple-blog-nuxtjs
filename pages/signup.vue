@@ -31,7 +31,7 @@
                         <!-- <hr class="my-4"> -->
                         <div class="d-flex justify-content-center links">
                             Already have an account?
-                            <nuxt-link class="pl-1" to="/login">Log In</nuxt-link>
+                            <nuxt-link class="pl-1 text-primary" to="/login">Log In</nuxt-link>
                         </div>
                     </form>
 

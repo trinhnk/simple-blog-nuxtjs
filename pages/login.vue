@@ -27,7 +27,8 @@
                                 <!-- <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button> -->
                                 <!-- <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button> -->
                                 <!-- <hr class="my-4"> -->
-                                <div class="d-flex justify-content-center links">Don't have an account?<nuxt-link class="pl-1" to="/signup">Sign Up</nuxt-link>
+                                <div class="d-flex justify-content-center links">Don't have an account?
+                                    <nuxt-link class="pl-1 text-primary" to="/signup">Sign Up</nuxt-link>
                                 </div>
                             </form>
 

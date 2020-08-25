@@ -1,6 +1,6 @@
 <template>
-    <div class="container">
-        <div class="my-5">
+    <div class="container body-min-height">
+        <div class="py-5">
             <div class="text-center">
                 <h1>{{ article.title }}</h1>
                 <div class="review-intro">{{ article.description }}</div>
@@ -99,6 +99,12 @@ export default {
             }
         },
     },
+    head() {
+        return {
+            title: this.article.title,
+            meta: []
+        }
+    }
 }
 </script>
 

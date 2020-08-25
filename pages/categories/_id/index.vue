@@ -1,11 +1,11 @@
 <template>
-    <div class="container">
-        <div class="my-5">
+    <div class="container body-min-height">
+        <div class="py-5">
             <div class="title text-center">
-                <h1>List all Post</h1>
+                <h1 class="text-uppercase">{{ category.data.title }}</h1>
             </div>
             <div class="list-all-item mt-5">
-				<ul class="listing-items">
+				<ul class="listing-items" v-if="articles.length">
 					<li class="listing-item mb-4 pb-4" v-for="article in articles" :key="article.id">
 						<div class="row">
 							<div class="col-md-4 media">
@@ -26,6 +26,7 @@
 						</div>
 					</li>
 				</ul>
+				<div v-else>No posts here</div>
             </div>
         </div>
     </div>
@@ -35,16 +36,25 @@
 export default {
     data() {
         return {
-            articles: [],
+			articles: [],
+			category: {}
         }
     },
     async asyncData({$axios, params}) {
-        let {data, links, meta} = await $axios.$get(`/categories/${params.id}/details`)
+		let {data, links, meta} = await $axios.$get(`/categories/${params.id}/details`)
+		let category = await $axios.$get(`/categories/${params.id}`)
         return {
             articles: data,
-            links
+			links,
+			category: category
         }
-    },
+	},
+	head() {
+        return {
+            title: this.category.data.title,
+            meta: []
+        }
+    }
 }
 </script>
 

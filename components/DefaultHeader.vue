@@ -12,8 +12,11 @@
                         <li class="nav-item" :class="[(this.$route.path == '/') ? 'active' : '']">
                             <nuxt-link class="nav-link" to="/">Home</nuxt-link>
                         </li>
-                        <li class="nav-item" :class="[(this.$route.path == '/topics') ? 'active' : '']">
+                        <!-- <li class="nav-item" :class="[(this.$route.path == '/topics') ? 'active' : '']">
                             <nuxt-link class="nav-link" to="/topics">Blog</nuxt-link>
+                        </li> -->
+                        <li class="nav-item" :class="[(this.$route.path == '/categories') ? 'active' : '']">
+                            <nuxt-link class="nav-link" to="/categories">Categories</nuxt-link>
                         </li>
                     </ul>
                     <template v-if="!authenticated">
@@ -28,15 +31,15 @@
                     </template>
                     <template v-if="authenticated">
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item" :class="[(this.$route.path == '/dashboard') ? 'active' : '']">
+                            <!-- <li class="nav-item" :class="[(this.$route.path == '/dashboard') ? 'active' : '']">
                                 <nuxt-link class="nav-link" to="/dashboard">Dashboard</nuxt-link>
-                            </li>
+                            </li> -->
                             <li class="nav-item" :class="[(this.$route.path == '/articles') ? 'active' : '']">
                                 <nuxt-link class="nav-link" to="/articles">Articles</nuxt-link>
                             </li>
-                            <li class="nav-item" :class="[(this.$route.path == '/categories') ? 'active' : '']">
+                            <!-- <li class="nav-item" :class="[(this.$route.path == '/categories') ? 'active' : '']">
                                 <nuxt-link class="nav-link" to="/categories">Categories</nuxt-link>
-                            </li>
+                            </li> -->
                             <li class="nav-item" :class="[(this.$route.path == '/profile') ? 'active' : '']">
                                 <!-- <a class="nav-link" href="javascript:void(0);">{{ user.name }}</a> -->
                                 <nuxt-link class="nav-link" to="/profile">{{ user.name }}</nuxt-link>
