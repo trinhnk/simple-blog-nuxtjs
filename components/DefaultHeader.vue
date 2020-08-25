@@ -46,10 +46,10 @@
                             </li>
                         </ul>
                     </template>
-                    <!-- <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <form class="form-inline my-2 my-lg-0" @submit.prevent="search">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" v-model="searchText">
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form> -->
+                    </form>
                 </div>
             </div>
         </nav>
@@ -60,12 +60,17 @@
 export default {
     data() {
         return {
-            router: this.$route.path
+            router: this.$route.path,
+            searchText: ''
         }
     },
     methods: {
         logout() {
             this.$auth.logout()
+        },
+        search() {
+            // console.log(this.searchText)
+            return this.$router.push(`/search?s=${this.searchText}`);
         }
     }
 }

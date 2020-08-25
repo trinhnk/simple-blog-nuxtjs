@@ -14,10 +14,10 @@
 								</div>
 							</div>
 							<div class="col-md-8 content">
-								<div class="item-category text-uppercase font-weight-bold text-black-50">
-									<nuxt-link :to="{name: 'categories-id', params: {id: article.category.id}}">{{ article.category.title }}</nuxt-link>
+								<div class="item-category text-uppercase font-weight-bold">
+									<nuxt-link class="text-black-50" :to="{name: 'categories-id', params: {id: article.category.id}}">{{ article.category.title }}</nuxt-link>
 								</div>
-								<nuxt-link :to="{name: 'articles-id', params: {id: article.id}}">
+								<nuxt-link class="listing-item-title" :to="{name: 'articles-id', params: {id: article.id}}">
 									<h3 class="item-title">{{ article.title }}</h3>
 								</nuxt-link>
 								<p class="card-text">{{ article.description.substring(0,150) }}...</p>
@@ -87,7 +87,10 @@ export default {
 </script>
 
 <style scoped>
-	li{
+	.listing-items>li{
 		border-bottom: 1px solid #cccccc;
+	}
+	.listing-item-title{
+		color: #222529;
 	}
 </style>
