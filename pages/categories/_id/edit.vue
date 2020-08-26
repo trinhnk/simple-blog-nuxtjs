@@ -8,11 +8,11 @@
             <input v-model="category.title" type="text" class="form-control" placeholder="Enter category title" autofocus>
             <small class="form-text text-danger" v-if="errors.title">{{errors.title[0]}}</small>
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label><strong>Slug:</strong></label>
             <input v-model="category.slug" type="text" class="form-control">
             <small class="form-text text-danger" v-if="errors.slug">{{errors.slug[0]}}</small>
-        </div>
+        </div> -->
         <div class="form-group">
             <label><strong>Description:</strong></label>
             <textarea v-model="category.description" class="form-control" rows="5"></textarea>
@@ -29,7 +29,7 @@
 <script>
 import Swal from 'sweetalert2'
 export default {
-	middleware: ['auth'],
+	middleware: ['auth', 'adminRole'],
 	data() {
 		return {
 			category: {

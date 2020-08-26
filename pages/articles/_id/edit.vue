@@ -1,9 +1,9 @@
 <template>
     <div class="container col-md-8 body-min-height">
         <div class="py-5">
-            <h1>Create a new article</h1>
+            <h1>Edit article</h1>
             <br>
-            <form @submit.prevent="create">
+            <form @submit.prevent="update">
                 <div class="form-group">
                     <label><strong>Title:</strong></label>
                     <input v-model="article.title" type="text" class="form-control" placeholder="Enter article title" autofocus>
@@ -26,27 +26,26 @@
                 </div>
                 <div class="dropdown show">
                     <select class="form-control form-control-lg" v-model="article.category_id">
-                        <option value="" disabled selected>Category...</option>
+                        <option value="" disabled>Category...</option>
                         <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.title }}</option>
                     </select>
                     <small class="form-text text-danger" v-if="errors.category_id">{{errors.category_id[0]}}</small>
                 </div>
-                <button type="submit" class="btn btn-primary mt-4">Create</button>
+                <button type="submit" class="btn btn-primary mt-4">Save</button>
             </form>
-
         </div>
+        <pre>{{article}}</pre>
     </div>
 </template>
 
 <script>
 import Swal from 'sweetalert2'
 export default {
-    middleware: ['auth'],
+    middleware: ['auth', 'writerRole'],
     data() {
         return {
             article: {
                 title: '',
-                slug: '',
                 description: '',
                 content: '',
                 category_id: ''
@@ -57,27 +56,47 @@ export default {
     async asyncData({$axios, params}) {
 		const {data} = await $axios.$get('/categories')
 		return {categories: data}
-	},
+    },
+    async asyncData({$axios, params}) {
+        const article = await $axios.$get(`/articles/${params.id}`)
+        const categories = await $axios.$get('/categories')
+        return {
+            article: article.data,
+            // {
+            //     title: article.data.title,
+            //     description: article.data.description,
+            //     content: article.data.content,
+            //     category_id: article.data.category.id,
+            // },
+            categories: categories.data,
+        }
+    },
     methods: {
-        async create() {
-            try{
-                let _seft = this
-                await this.$axios.$post('/articles/create', this.article)
-                Swal.fire({
-                    type: 'success',
-                    title: 'Success',
-                    text: 'Topic has been created successfully',
-                }).then(function(){
-                    return _seft.$router.push('/');
+        async update() {
+            // try{
+                // let _seft = this
+                console.log(this.article.category_id)
+                await this.$axios.$patch(`/articles/${this.$route.params.id}`, {
+                    title: this.article.title,
+                    description: this.article.description,
+                    content: this.article.content,
+                    category_id: this.article.category_id,
                 })
-            } catch (errors) {
-                console.log(errors)
-            }
+                // Swal.fire({
+                //     type: 'success',
+                //     title: 'Success',
+                //     text: 'Topic has been updated successfully',
+                // }).then(function(){
+                    return this.$router.push('/');
+                // })
+            // } catch (errors) {
+            //     console.log(errors)
+            // }
         }
     },
     head() {
         return {
-            title: 'Create a new article',
+            title: 'Edit article',
             meta: []
         }
     }

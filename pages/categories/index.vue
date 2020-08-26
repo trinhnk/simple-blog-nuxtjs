@@ -4,9 +4,11 @@
             <div class="title">
                 <h1>Categories</h1>
             </div>
-            <div class="add-new" v-if="authenticated">
-                <nuxt-link class="btn btn-success mt-4" to="/categories/create">Add New</nuxt-link>
-            </div>
+            <template v-if="authenticated">
+                <div class="add-new" v-if="user.role_id == 1">
+                    <nuxt-link class="btn btn-success mt-4" to="/categories/create">Add New</nuxt-link>
+                </div>
+            </template>
 
             <div class="list-all-item">
                 <div class="row">
@@ -19,10 +21,12 @@
                                 </nuxt-link>
                                 <p class="card-text">{{ category.description.substring(0,140) }}...</p>
                                 <nuxt-link class="btn btn-primary" :to="{name: 'categories-id', params: {id: category.id}}">Go to {{ category.title }}</nuxt-link>
-                                <div class="float-right" v-if="authenticated">
-                                    <nuxt-link class="btn btn-warning" :to="{name: 'categories-id-edit', params: {id: category.id}}">Edit</nuxt-link>
-                                    <a class="btn btn-danger" href="javascript:void(0);">Delete</a>
-                                </div>
+                                <template v-if="authenticated">
+                                    <div class="float-right" v-if="user.role_id == 1">
+                                        <nuxt-link class="btn btn-warning" :to="{name: 'categories-id-edit', params: {id: category.id}}">Edit</nuxt-link>
+                                        <button class="btn btn-danger" @click="deleteCategory(category.id)">Delete</button>
+                                    </div>
+                                </template>
                             </div>
                         </div>
                     </div>
@@ -33,10 +37,12 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 export default {
     data() {
         return {
             categories: [],
+            // user: this.$auth.user,
         }
     },
     async asyncData({$axios}) {
@@ -45,6 +51,30 @@ export default {
             categories: data,
             links
         }
+    },
+    methods: {
+        async deleteCategory(id) {
+            try {
+                let _sefl = this
+                await Swal.fire({
+                    title: 'Are you sure?',
+                    type: 'question',
+                    confirmButtonText: 'OK',
+                    cancelButtonText: 'Cancel',
+                    showCancelButton: true,
+                    showCloseButton: true
+                }).then((ok) => {
+                    if (ok.value) {
+                        _sefl.$axios.$delete(`/categories/${id}`)
+                        _sefl.$router.push('/')
+                    }else{
+                        console.log('cancel')
+                    }
+                })
+            } catch (e) {
+                console.log('error:', e);
+            }
+        },
     },
     head() {
         return {

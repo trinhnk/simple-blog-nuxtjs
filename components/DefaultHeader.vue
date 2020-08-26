@@ -34,8 +34,11 @@
                             <!-- <li class="nav-item" :class="[(this.$route.path == '/dashboard') ? 'active' : '']">
                                 <nuxt-link class="nav-link" to="/dashboard">Dashboard</nuxt-link>
                             </li> -->
-                            <li class="nav-item" :class="[(this.$route.path == '/articles') ? 'active' : '']">
+                            <li class="nav-item" :class="[(this.$route.path == '/articles') ? 'active' : '']" v-if="user.role_id == 1|user.role_id == 2">
                                 <nuxt-link class="nav-link" to="/articles">Articles</nuxt-link>
+                            </li>
+                            <li class="nav-item" :class="[(this.$route.path == '/users') ? 'active' : '']" v-if="user.role_id == 1">
+                                <nuxt-link class="nav-link" to="/users">Users</nuxt-link>
                             </li>
                             <!-- <li class="nav-item" :class="[(this.$route.path == '/categories') ? 'active' : '']">
                                 <nuxt-link class="nav-link" to="/categories">Categories</nuxt-link>

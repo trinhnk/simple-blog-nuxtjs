@@ -20,8 +20,11 @@
 								<nuxt-link class="listing-item-title" :to="{name: 'articles-id', params: {id: article.id}}">
 									<h3 class="item-title">{{ article.title }}</h3>
 								</nuxt-link>
-								<p class="card-text">{{ article.description.substring(0,150) }}...</p>
-								<div class="date-details text-muted"><small>{{ article.updated_at }}</small></div>
+								<p class="card-text">{{ article.description.substring(0,140) }}...</p>
+								<div class="date-details text-muted">
+                                    <strong>{{ article.user.name }}</strong>
+                                    <small> POSTED ON {{ article.updated_at }}</small>
+                                </div>
 							</div>
 						</div>
 					</li>
@@ -73,11 +76,10 @@ export default {
 	},
 	methods: {
         async loadMore(url) {
-			console.log(url)
 			let {data, links, meta} =  await this.$axios.$get(url)
 			// return this.articles = {...this.articles, ...data}
 			return [
-				this.articles = {...this.articles, ...data},
+				this.articles = data,
 				this.links = links,
 				this.meta = meta,
 			]

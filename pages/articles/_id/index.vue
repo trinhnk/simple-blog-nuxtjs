@@ -44,20 +44,26 @@
                                 </div>
                                 <div class="col-md-11">
                                     <div class="info-account">
-                                        <span class="name float-left font-weight-bold py-2 pl-3">{{ comment.user.name }}</span>
-                                        <span class="interval float-right">
-                                            <small class="text-muted">
-                                                {{ comment.created_at }}
-                                            </small>
-                                        </span>
+                                        <div>
+                                            <span class="name float-left font-weight-bold py-2 pl-3">{{ comment.user.name }}</span>
+                                            <span class="interval float-right">
+                                                <small class="text-muted">
+                                                    {{ comment.created_at }}
+                                                </small>
+                                            </span>
+                                        </div>
                                         <div class="clearfix"></div>
                                         <div class="content pl-3">
                                             {{ comment.content }}
                                         </div>
+                                        <div class="delete-comment float-right">
+                                            <button class="btn btn-danger" @click="deleteComment(comment.id)">
+                                                <i class="fas fa-trash fa-fw text-white"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </li>
                 </ul>
@@ -92,6 +98,16 @@ export default {
             try{
                 let _seft = this
                 await this.$axios.$post(`/comments/create`, this.send_comment)
+                const {data} = await this.$axios.$get(`/comments/${this.$route.params.id}`)
+                return this.comments = data
+            } catch (errors) {
+                console.log(errors)
+            }
+        },
+        async deleteComment(id) {
+            try{
+                let _seft = this
+                await this.$axios.$delete(`/comments/${id}`)
                 const {data} = await this.$axios.$get(`/comments/${this.$route.params.id}`)
                 return this.comments = data
             } catch (errors) {

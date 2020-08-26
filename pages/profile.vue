@@ -23,6 +23,7 @@
                 </div>
             </form>
         </div>
+        <!-- <pre>{{profile.data}}</pre> -->
     </div>
 </template>
 
